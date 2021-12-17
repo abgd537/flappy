@@ -9,7 +9,6 @@ class Game : Canvas(), Runnable
 {
 	private val scrWidth = 960
 	private val scrHeight = 640
-	private val scrSize = Dimension(scrWidth, scrHeight)
 	private val floorHeight = scrHeight / 8
 	
 	private var thread : Thread? = null
@@ -124,6 +123,8 @@ class Game : Canvas(), Runnable
 	
 	init
 	{
+		val scrSize = Dimension(scrWidth, scrHeight)
+		
 		minimumSize = scrSize
 		preferredSize = scrSize
 		maximumSize = scrSize
