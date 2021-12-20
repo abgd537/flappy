@@ -4,7 +4,6 @@ import java.awt.Canvas
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Font
-import java.io.File
 
 class Game : Canvas(), Runnable
 {
@@ -87,8 +86,6 @@ class Game : Canvas(), Runnable
 		{
 			gameOver = true
 			started = false
-			
-			handler.updateHighScore()
 		}
 	}
 	
@@ -118,10 +115,7 @@ class Game : Canvas(), Runnable
 		
 		g.color = Color.black
 		g.font = Font(null, Font.PLAIN, 30)
-		g.drawString("Score: " + handler.score, 10, 55)
-		
-		g.font = Font(null, Font.PLAIN, 20)
-		g.drawString("HighScore: " + handler.highScore, 10, 25)
+		g.drawString("Score : " + handler.score, 10, 35)
 		
 		g.dispose()
 		bs.show()
@@ -130,7 +124,7 @@ class Game : Canvas(), Runnable
 	init
 	{
 		val scrSize = Dimension(scrWidth, scrHeight)
-
+		
 		minimumSize = scrSize
 		preferredSize = scrSize
 		maximumSize = scrSize
@@ -140,7 +134,5 @@ class Game : Canvas(), Runnable
 		addMouseMotionListener(MouseInput(this))
 		
 		Screen(scrSize, this)
-		
-		handler.getHighScoreFrom(File("src/data/high"))
 	}
 }

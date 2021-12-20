@@ -2,7 +2,6 @@ package main
 
 import java.awt.Color
 import java.awt.Graphics
-import java.io.File
 import kotlin.properties.Delegates
 import kotlin.random.Random
 
@@ -26,7 +25,6 @@ class Handler(private val startPos : Int, private val availableSpace : Int, priv
 	
 	var collided = false
 	var score = 0
-	var highScore = 0
 	
 	fun replace()
 	{
@@ -85,15 +83,6 @@ class Handler(private val startPos : Int, private val availableSpace : Int, priv
 				pivot -= pipes.size
 		}
 	}
-	
-	fun updateHighScore()
-	{
-		val file = File("src/data/high")
-		getHighScoreFrom(file)
-		file.writeText("$highScore")
-	}
-	
-	fun getHighScoreFrom(file : File) = file.forEachLine { highScore = maxOf(score, it.toIntOrNull() ?: 0) }
 	
 	inner class Pipe(var x : Int, var gapY : Int = Random.nextInt(availableSpace/8, availableSpace*7/8 - pipeGap))
 	{
