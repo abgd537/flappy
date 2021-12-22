@@ -31,16 +31,31 @@ class Game : Canvas(), Runnable
 	@Synchronized
 	fun start()
 	{
+		if(running) return
+		
 		thread = Thread(this)
 		thread!!.start()
+		
 		running = true
 	}
 	
 	@Synchronized
 	private fun stop()
 	{
-		thread!!.join()
+		if(!running) return
+		
 		running = false
+		
+		try
+		{
+			thread!!.join()
+		}
+		
+		catch(e : Exception)
+		{
+			e.printStackTrace()
+			exitProcess(0)
+		}
 	}
 	
 	override fun run()
